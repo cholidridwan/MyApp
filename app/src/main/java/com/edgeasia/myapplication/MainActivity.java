@@ -64,7 +64,8 @@ public class MainActivity extends AppCompatActivity {
         btnTag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewPager.setCurrentItem(3, false);
+                //viewPager.setCurrentItem(3, false);
+                Log.i("page", String.valueOf(viewPager.getCurrentItem()));
             }
         });
     }
