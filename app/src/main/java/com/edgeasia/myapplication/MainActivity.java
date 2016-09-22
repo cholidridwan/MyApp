@@ -5,6 +5,9 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import java.io.File;
 
@@ -16,14 +19,16 @@ public class MainActivity extends AppCompatActivity {
 
     private String[] mFileStrings;
     private File[] listFile;
+    private ViewPager viewPager;
+    private ImageAdapter imageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewPageAndroid);
-        ImageAdapter imageAdapter = new ImageAdapter(this);
+        viewPager = (ViewPager) findViewById(R.id.viewPageAndroid);
+        imageAdapter = new ImageAdapter(this);
 
         if (!newFolder.exists()) {
             Log.i("mkdir", "success");
@@ -54,5 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager.setAdapter(imageAdapter);
 
+        Button btnTag = (Button) findViewById(R.id.btnTag);
+        btnTag.setAlpha(0.5f); // it can set to ZERO
+        btnTag.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewPager.setCurrentItem(3, false);
+            }
+        });
     }
 }
